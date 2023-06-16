@@ -111,7 +111,9 @@ container_build(){
   ori=$(date | md5sum)
   dname=${ori: 2: 9}
   docker pull proxyrack/pop
-  docker run -d --name "$NAME" --restart always -e api_key="$PRTOKEN" -e device_name="$dname" proxyrack/pop
+   sudo docker run -d --name "$NAME" --restart always proxyrack/pop
+#  sudo docker run -d --name "$NAME" --restart always -e api_key="$PRTOKEN" -e device_name="$dname" proxyrack/pop
+#  sudo docker run -d --name proxyrack --restart always proxyrack/pop
    dvid=$(docker exec -it "$NAME" cat uuid.cfg)
    curl \
      -X POST https://peer.proxyrack.com/api/device/add \
